@@ -134,12 +134,33 @@ class Cli
     def find_your_best_board_bud
         board_games = Boardgame.all 
         question_1 = prompt.select("How many buds in your inner circle?",[1,2,3,4,"I have more than four buds."])
-        board_games = board_games.find(all:, ideal_number_of_players: == question_1)
-        binding.pry
-        question_2 = prompt.select("How motivated are you?",["I barely got out of bed.","I might do a quick workout.","I am CRUSHING this day!"])
-        question_3 = prompt.select("How much time do you have to kill?",["Enough for a quickie.","Just killing some time.","Got all day baby!"])
-    binding.pry
+        if question_1 == "I have more than four buds."
+            question_1 = 5
+            board_games = board_games.filter do |game|
+                game.ideal_number_of_players >= question_1
+            end
+        else
+            board_games = board_games.filter do |game|
+                game.ideal_number_of_players == question_1
+            end
+        end
+        
+        question_2 = prompt.select("How motivated are you?",{"I barely got out of bed.": "Easy","I might do a quick workout.": "Medium","I am CRUSHING this day!": "Hard"})
+        board_games = board_games.filter do |game|
+            game.difficulty == question_2
+        end
 
+        question_3 = prompt.select("How much time do you have to kill?",{"Enough for a quickie.": 30,"Just killing some time.": 60,"Got all day baby!": 90})
+        board_games = board_games.filter do |game|
+            game.duration == question_3
+        end 
+        
+        board_games = board_games.sample
+        if board_games
+            puts "#{board_games.name} is a #{board_games.difficulty} difficulty game to learn and play. It plays best with #{board_games.ideal_number_of_players} buds and will take you about #{board_games.duration} minutes to play!"
+        else
+            puts "We have no matches :("
+        end
     end
 
 
