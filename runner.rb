@@ -1,6 +1,10 @@
 require_relative 'config/environment'
 
-Cli.new.start_game
+cli = Cli.new\
+
+
+cli
+binding.pry
 
 
 
