@@ -1,3 +1,8 @@
+Usergame.destroy_all
+User.destroy_all
+Boardgame.destroy_all
+
+
 adam = User.create(name: "Adam", username: "acnowland")
 mell = User.create(name: "Mell", username: "DrZeebs")
 
