@@ -65,6 +65,7 @@ class Cli
         case main_selection
         when "Lets find your perfect match, bud"
             puts "this is our quiz"
+            find_your_best_board_bud
             return_or_exit
 
         when "Lets find you a rando, bud"
@@ -109,9 +110,6 @@ class Cli
         end
     end
 
-
-
-
     def find_all_favorites
         all_faves = Usergame.all.filter do |user_fav|
             user_fav.user == @user
@@ -122,10 +120,6 @@ class Cli
 
     end
 
-
-
-
-    ##TO PUT AT END OF MENU CHOICES TO GO BACK OR EXIT
     def return_or_exit
         what_to_do = prompt.select("What would you like to do now, bud?",["Return to the main menu", "Exit"])
         if what_to_do == "Return to the main menu"
@@ -135,8 +129,19 @@ class Cli
             puts "Thanks for stopping by buddy!"
             exit!
         end
+    end
+
+    def find_your_best_board_bud
+        board_games = Boardgame.all 
+        question_1 = prompt.select("How many buds in your inner circle?",[1,2,3,4,"I have more than four buds."])
+        board_games = board_games.find(all:, ideal_number_of_players: == question_1)
+        binding.pry
+        question_2 = prompt.select("How motivated are you?",["I barely got out of bed.","I might do a quick workout.","I am CRUSHING this day!"])
+        question_3 = prompt.select("How much time do you have to kill?",["Enough for a quickie.","Just killing some time.","Got all day baby!"])
+    binding.pry
 
     end
+
 
 
 
