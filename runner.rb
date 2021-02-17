@@ -1,9 +1,10 @@
 require_relative 'config/environment'
 
-cli = Cli.new\
+app = Cli.new
+app.start
 
 
-cli
+
 binding.pry
 
 

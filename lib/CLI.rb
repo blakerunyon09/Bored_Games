@@ -4,8 +4,54 @@
     ## View your saved games
     ###???? try to view top 10 list for games 
 class Cli  
-    puts "Bored Games"
-    puts "When you dont know what to play, let us help you!" 
+    attr_accessor :user
+    # puts "Bored Games"
+    # puts "When you dont know what to play, let us help you!" 
+    def initialize user=nil
+        @user = user 
+    end
+
+    def prompt 
+        TTY::Prompt.new
+    end
+
+    def start 
+        user_input = prompt.yes? "Have you been here before?"
+        if user_input
+            sign_in
+        else
+            sign_up
+        end
+        binding.pry
+    end
+
+
+    def sign_in 
+        user_input = prompt.ask "What is your username?"
+        found_user = User.find_by(username: user_input)
+        if found_user
+            self.user = found_user 
+        else
+            puts "So Sorry Bud, that username doesn't exist. Let's sign you up!"
+            sign_up
+        end
+    end
+
+    def sign_up
+        name = prompt.ask "What's your name?"
+        username = prompt.ask "What's your username?"
+
+        self.user = User.create(
+            name: name,
+            username: username)
+
+        puts "Thanks! Let's go to the main menu!"
+    end
+end
+
+
+
+
 
     #LAYOUT
     #IS THIS YOUR FIRST TIME HERE?
@@ -33,4 +79,3 @@ class Cli
 
 
 
-end
