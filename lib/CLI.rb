@@ -60,11 +60,10 @@ class Cli
 
     def main_menu
         system("clear")
-        all_selection = ["Lets find your perfect match, bud", "Lets find you a rando, bud", "Add a game to the catalogue, bud", "Lets see ALL the games, bud", "See all your favorite games, bud"]
-        main_selection = prompt.select("Welcome to the main menu, what would you like to do bud?", all_selection)
+        all_selection = ["Lets find your perfect match, bud", "Lets find you a rando game, bud", "Add a game to the catalogue, bud", "Lets see ALL the games, bud", "See all your favorite games, bud", "Exit!"]
+        main_selection = prompt.select("Welcome to the main menu #{user.name}, what would you like to do bud?", all_selection)
         case main_selection
         when "Lets find your perfect match, bud"
-            puts "this is our quiz"
             find_your_best_board_bud
             return_or_exit
 
@@ -89,10 +88,16 @@ class Cli
             bg_difficulty = prompt.select("How hard is this game to learn and play?",["Easy", "Medium", "Hard"])
             bg_duration = prompt.ask("About how long does a game usually last (in minutes)?", convert: :integer)
             ##NEED TO MAKE A CHECK TO SEE IF GAME ALREADY EXISTS
-            Boardgame.create(name: bg_name, duration: bg_duration, difficulty: bg_difficulty, ideal_number_of_players: bg_players)
+            binding.pry
+            if Boardgame.find_by(name: bg_name)
+                puts "Hey bud, that game already exists!!"
+                puts "Lets try something else..."
+                return_or_exit
+            else
+                Boardgame.create(name: bg_name, duration: bg_duration, difficulty: bg_difficulty, ideal_number_of_players: bg_players)
+                puts "Thats awesome!! Your game has now been added so all the other buds can see it too! \n"
 
-            puts "Thats awesome!! Your game has now been added so all the other buds can see it too! \n"
-
+            end
             return_or_exit
 
         when "Lets see ALL the games, bud"  
@@ -107,7 +112,12 @@ class Cli
                 puts game
             end
             return_or_exit
+        when "Exit!"
+            puts "Thanks for stopping by buddy!"
+            exit!
+            
         end
+
     end
 
     def find_all_favorites
@@ -133,7 +143,7 @@ class Cli
 
     def find_your_best_board_bud
         board_games = Boardgame.all 
-        question_1 = prompt.select("How many buds in your inner circle?",[1,2,3,4,"I have more than four buds."])
+        question_1 = prompt.select("How many buds in your inner circle?",[2,3,4,"I have more than four buds."])
         if question_1 == "I have more than four buds."
             question_1 = 5
             board_games = board_games.filter do |game|
@@ -143,30 +153,28 @@ class Cli
             board_games = board_games.filter do |game|
                 game.ideal_number_of_players == question_1
             end
+            binding.pry
         end
         
         question_2 = prompt.select("How motivated are you?",{"I barely got out of bed.": "Easy","I might do a quick workout.": "Medium","I am CRUSHING this day!": "Hard"})
         board_games = board_games.filter do |game|
             game.difficulty == question_2
         end
+        binding.pry
 
-        question_3 = prompt.select("How much time do you have to kill?",{"Enough for a quickie.": 30,"Just killing some time.": 60,"Got all day baby!": 90})
+        question_3 = prompt.select("How much time do you have to kill?",{"Enough for a quickie.": 60,"Just killing some time.": 90,"Got all day baby!": 240})
         board_games = board_games.filter do |game|
-            game.duration == question_3
+            game.duration <= question_3
         end 
+        binding.pry
         
         board_games = board_games.sample
         if board_games
             puts "#{board_games.name} is a #{board_games.difficulty} difficulty game to learn and play. It plays best with #{board_games.ideal_number_of_players} buds and will take you about #{board_games.duration} minutes to play!"
         else
-            puts "We have no matches :("
+            puts "Sorry there bud, we have not matches at this time :("
         end
     end
-
-
-
-
-
 
 
 end
