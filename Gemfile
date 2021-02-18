@@ -15,3 +15,9 @@ gem "require_all", "~> 3.0"
 gem "tty-prompt", "~> 0.23.0"
 
 gem "tty-font", "~> 0.5.0"
+
+gem "artii", "~> 2.1"
+
+gem "pastel", "~> 0.8.0"
+
+gem "tty-progressbar", "~> 0.18.1"

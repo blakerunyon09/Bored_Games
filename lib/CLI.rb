@@ -4,9 +4,14 @@
     ## View your saved games
     ###???? try to view top 10 list for games 
 class Cli  
+
     attr_accessor :user
-    # puts "Bored Games"
-    # puts "When you dont know what to play, let us help you!" 
+
+
+    #font = TTY::Font.new(:starwars)
+    #pastel = Pastel.new
+
+
     def initialize user=nil
         @user = user 
     end
@@ -18,6 +23,8 @@ class Cli
 
 
     def start 
+        system('clear')
+        Artwork.title
         user_input = prompt.yes? "Have you been here before?"
         if user_input
             sign_in
@@ -59,7 +66,9 @@ class Cli
     end
 
     def main_menu
+        
         system("clear")
+        Artwork.bored_game
         all_selection = ["Lets find your perfect match, bud", "Lets find you a rando game, bud", "Add a game to the catalogue, bud", "Lets see ALL the games, bud", "See all your favorite games, bud", "Exit!"]
         main_selection = prompt.select("Welcome to the main menu #{user.name}, what would you like to do bud?", all_selection)
         case main_selection
@@ -67,9 +76,12 @@ class Cli
             find_your_best_board_bud
             return_or_exit
 
-        when "Lets find you a rando, bud"
+        when "Lets find you a rando game, bud"
+            pastel = Pastel.new()
+            
             rando_game = Boardgame.all.sample
-            puts "#{rando_game.name} is a #{rando_game.difficulty} difficulty game to learn and play. It plays best with #{rando_game.ideal_number_of_players} buds and will take you about #{rando_game.duration} minutes to play!"
+            Artwork.progress_bar
+            puts "#{pastel.cyan.bold(rando_game.name)} is a #{pastel.bright_green.bold(rando_game.difficulty)} difficulty game to learn and play. It plays best with #{pastel.bright_green.bold(rando_game.ideal_number_of_players)} buds and will take you about #{pastel.bright_green.bold(rando_game.duration)} minutes to play!"
             add_to_fave = prompt.yes?("Would you like to add this to your favorite games?")
             if find_all_favorites.include?(rando_game.name)
                 puts 'Thats already part of your favorites list bud!!'
@@ -88,7 +100,7 @@ class Cli
             bg_difficulty = prompt.select("How hard is this game to learn and play?",["Easy", "Medium", "Hard"])
             bg_duration = prompt.ask("About how long does a game usually last (in minutes)?", convert: :integer)
             ##NEED TO MAKE A CHECK TO SEE IF GAME ALREADY EXISTS
-            binding.pry
+            
             if Boardgame.find_by(name: bg_name)
                 puts "Hey bud, that game already exists!!"
                 puts "Lets try something else..."
@@ -108,11 +120,19 @@ class Cli
             return_or_exit
 
         when "See all your favorite games, bud"
-            find_all_favorites.each do |game|
-                puts game
+            your_favorites = find_all_favorites
+            if your_favorites.length > 0
+                your_favorites.each do |game|
+                    puts game
+                end
+            else
+                puts "You don't have any favorite games bud!!!!"
             end
+
             return_or_exit
         when "Exit!"
+            system('clear')
+            Artwork.goodbye
             puts "Thanks for stopping by buddy!"
             exit!
             
@@ -136,12 +156,15 @@ class Cli
             system('clear')
             main_menu
         else
+            system('clear')
+            Artwork.goodbye
             puts "Thanks for stopping by buddy!"
             exit!
         end
     end
 
     def find_your_best_board_bud
+        pastel = Pastel.new()
         board_games = Boardgame.all 
         question_1 = prompt.select("How many buds in your inner circle?",[2,3,4,"I have more than four buds."])
         if question_1 == "I have more than four buds."
@@ -153,24 +176,25 @@ class Cli
             board_games = board_games.filter do |game|
                 game.ideal_number_of_players == question_1
             end
-            binding.pry
+            
         end
         
         question_2 = prompt.select("How motivated are you?",{"I barely got out of bed.": "Easy","I might do a quick workout.": "Medium","I am CRUSHING this day!": "Hard"})
         board_games = board_games.filter do |game|
             game.difficulty == question_2
         end
-        binding.pry
+        
 
         question_3 = prompt.select("How much time do you have to kill?",{"Enough for a quickie.": 60,"Just killing some time.": 90,"Got all day baby!": 240})
         board_games = board_games.filter do |game|
             game.duration <= question_3
         end 
-        binding.pry
+        
         
         board_games = board_games.sample
+        Artwork.progress_bar
         if board_games
-            puts "#{board_games.name} is a #{board_games.difficulty} difficulty game to learn and play. It plays best with #{board_games.ideal_number_of_players} buds and will take you about #{board_games.duration} minutes to play!"
+            puts "#{pastel.cyan.bold(board_games.name)} is a #{pastel.bright_green.bold(board_games.difficulty)} difficulty game to learn and play. It plays best with #{pastel.bright_green.bold(board_games.ideal_number_of_players)} buds and will take you about #{pastel.bright_green.bold(board_games.duration)} minutes to play!"
         else
             puts "Sorry there bud, we have not matches at this time :("
         end
