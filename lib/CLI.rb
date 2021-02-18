@@ -23,7 +23,9 @@ class Cli
 
 
     def start 
+
         system('clear')
+        pid = fork{exec 'afplay', "lib/Tron_sounds2.mp3"}
         Artwork.title
         user_input = prompt.yes? "Have you been here before?"
         if user_input
@@ -75,6 +77,7 @@ class Cli
         when "Lets find your perfect match, bud"
             find_your_best_board_bud
             return_or_exit
+            system('clear')
 
         when "Lets find you a rando game, bud"
             pastel = Pastel.new()
