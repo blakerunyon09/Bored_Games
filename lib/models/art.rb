@@ -1,6 +1,6 @@
 class Artwork
 
-
+    #THIS CLASS CONTAINS ALL ARTWORK FOR USE DURING THE APPLICATION, CAN USE ARTWORK.METHOD MADE TO CALL THEM INTO CLI APP
     def self.title
         font = TTY::Font.new(:starwars)
         pastel = Pastel.new

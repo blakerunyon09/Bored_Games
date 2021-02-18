@@ -1,16 +1,7 @@
-##Signup/Loginn - VERY FIRST THING 
-    ## Browse Games
-    ## Find Your Perfect Game
-    ## View your saved games
-    ###???? try to view top 10 list for games 
+
 class Cli  
 
     attr_accessor :user
-
-
-    #font = TTY::Font.new(:starwars)
-    #pastel = Pastel.new
-
 
     def initialize user=nil
         @user = user 
@@ -21,7 +12,7 @@ class Cli
     end
 
 
-
+    #MAIN STARTUP SCREEN --> OFFERS LOGIN AND IF NO USERNAME WILL GIVE YOU SIGN UP OPTION 
     def start 
 
         system('clear')
@@ -39,7 +30,7 @@ class Cli
 
 
 
-
+    #SIGN IN METHOD --> WILL SET YOUR USERNAME TO THE CURRENT SELF.USER, IF USE NON EXISTANT USER WILL SIGN YOU UP
     def sign_in 
         user_input = prompt.ask "What is your username?"
         found_user = User.find_by(username: user_input)
@@ -51,6 +42,7 @@ class Cli
             sign_up
         end
     end
+    #SIGN UP METHOD --> CREATES A NEW USER, WILL NOT ALLOW OVERLAP OF USERNAMES, SETS NEW USER TO SELF.USER
     def sign_up
         name = prompt.ask "What's your name?"
         username = prompt.ask "What's your username?"
@@ -66,7 +58,7 @@ class Cli
         puts "Thanks! Let's go to the main menu!"
         main_menu
     end
-
+    #MAIN MENU --> GIVES OPTIONS FOR QUIZ, RANDOM GAME, ADD A GAME, VIEW CATALOGUE OF GAMES, SEE FAVES, OR EXIT
     def main_menu
         
         system("clear")
@@ -74,11 +66,12 @@ class Cli
         all_selection = ["Lets find your perfect match, bud", "Lets find you a rando game, bud", "Add a game to the catalogue, bud", "Lets see ALL the games, bud", "See all your favorite games, bud", "Exit!"]
         main_selection = prompt.select("Welcome to the main menu #{user.name}, what would you like to do bud?", all_selection)
         case main_selection
+        #QUIZ SECTION
         when "Lets find your perfect match, bud"
             find_your_best_board_bud
             return_or_exit
             system('clear')
-
+        #RANDOM GAME SECTION
         when "Lets find you a rando game, bud"
             pastel = Pastel.new()
             
@@ -95,7 +88,8 @@ class Cli
                 Usergame.create(user: @user, boardgame: rando_game)
             end
             return_or_exit
-
+        
+        #ALLOWS ADDITION OF A GAME; WILL NOT TAKE MULTIPLES, CHECKS THE DB FIRST 
         when "Add a game to the catalogue, bud"
             puts "Bud, you are doing some good work, lets enter a new boardgame so other buds can access it as well"
             bg_name = prompt.ask("What is the name of the boardgame?")
@@ -114,14 +108,13 @@ class Cli
 
             end
             return_or_exit
-
+        #VIEW ALL GAME CATALOGUE
         when "Lets see ALL the games, bud"  
-            ##POSSIBLE TO MAKE INTO A TABLE TO VIEW ALL OF THE BOARDGAMES AND INFORMATION ABOUT THEM!
             Boardgame.all.each do |game|
                 puts game.name
             end
             return_or_exit
-
+        #VIEW FAVORITE GAMES WHICH HAVE BEEN SAVED
         when "See all your favorite games, bud"
             your_favorites = find_all_favorites
             if your_favorites.length > 0
@@ -143,6 +136,7 @@ class Cli
 
     end
 
+    #FILTERS THROUGH USERGAME DB AND THEN WILL RETURN A LIST OF FAVORITES FOR THAT USER
     def find_all_favorites
         all_faves = Usergame.all.filter do |user_fav|
             user_fav.user == @user
@@ -152,7 +146,7 @@ class Cli
         end
 
     end
-
+    #OPTION AFTER GOING TRHOUGH MENU TO RETURN TO MENU OR EXIT APP
     def return_or_exit
         what_to_do = prompt.select("What would you like to do now, bud?",["Return to the main menu", "Exit"])
         if what_to_do == "Return to the main menu"
@@ -165,7 +159,7 @@ class Cli
             exit!
         end
     end
-
+    #QUIZ METHOD TO FIND A GOOD OPTION FOR YOUR PLAY GROUP, GOES THROUGH QUESTIONS AND THEN FILTERS A LIST OF BOARDGAMES DOWN TO LIST MATCHING CRITERIA
     def find_your_best_board_bud
         pastel = Pastel.new()
         board_games = Boardgame.all 
@@ -193,6 +187,7 @@ class Cli
             game.duration <= question_3
         end 
         
+
         
         board_games = board_games.sample
         Artwork.progress_bar
@@ -210,28 +205,6 @@ end
 
 
 
-    #LAYOUT
-    #IS THIS YOUR FIRST TIME HERE?
-    #IF SO TAKE TO SIGN UP, IF NOT TAKE TO 'LOGIN' SCREEN
-
-    #SIGNUP -- PROMPT.ASK TO GET FIRST NAME AND USERNAME
-    #LOGGING -- INPUT THEIR USERNAME AND SET THE USER AND USERNAME; CAN LIKELY USE FINDBY 
-
-    #AFTER LOGGING IN HAVE OPTIONS:
-        #LET US RANDOMLY SELECT A GAME!
-        #DO THE QUIZ TO HELP US SELECT GAME 
-            #HOW MANY PLAYERS DO YOU HAVE?
-            #WHAT IS YOUR TIME LIMIT?
-            #HOW CHALLENGING WOULD YOU LIKE THE GAME TO BE?
-            #LOADING BAR? MAYBE WITH LIKE LITTLE BOARD GAMES LIKE THEY HAD TACOS??
-            #OUTPUT THE GAME, OR SAY SORRY AT THIS TIME NO GAME MATCHES YOUR REQUIREMENTS AND THEN BIG SAD FACE
-            
-        #ADD GAME TO THE GAME LIBRARY
-        #BROWSE ALL CURRENT GAMES
-        #FINAL ADDITION I WOULD LIKE TO TRY WOULD BE TO IMPLEMENT AN API THAT WOULD SHOW THE TOP THEN HOTTEST GAMES OUT ATM,
-        #BUT THIS IS THE REACH GOAL LOL 
-
-        
 
 
 
