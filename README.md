@@ -5,9 +5,8 @@
 ----------------------------------
 
 
-[Main Menu](https://i.imgur.com/mUP8OEt.png)
+<img width="1440" alt="Main Menu" src="https://user-images.githubusercontent.com/74437516/108554298-1f9b9580-72b1-11eb-80a5-982795f62c10.png">
 
-[Imgur](https://i.imgur.com/mUP8OEt.png)
 
 
 **_**BORED GAMES** WILL HELP YOU:_**
@@ -90,18 +89,14 @@ def find_all_favorites
 * View and edit catalogue.
 
 
-[Catalogue](https://i.imgur.com/L4nGO35.png)
-[Random Game Match](https://i.imgur.com/lUNGmhX.png)
+<img width="1440" alt="BG3" src="https://user-images.githubusercontent.com/74437516/108554964-0fd08100-72b2-11eb-8333-5bfad0f5b6b1.png">
+
+<img width="1440" alt="BG2" src="https://user-images.githubusercontent.com/74437516/108555061-355d8a80-72b2-11eb-8ba2-5901f9d89eb0.png">
 
 **_To-do list:_**
 
 * Refactor 
 * Make code more abstract
-
-
-
-[Imgur](https://i.imgur.com/L4nGO35.png)
-[Imgur](https://i.imgur.com/lUNGmhX.png)
 
 **_To-do list:_**
 
