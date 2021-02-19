@@ -4,7 +4,11 @@
 ## OUR SOLUTION FOR YOUR BOREDOM!!
 ----------------------------------
 
+
+! [Main Menu](https://i.imgur.com/mUP8OEt.png)
+
 [Imgur](https://i.imgur.com/mUP8OEt.png)
+
 
 **_**BORED GAMES** WILL HELP YOU:_**
 
@@ -46,6 +50,15 @@ To see [Bored Games in action](https://asciinema.org/a/trilahU71tqDnIIzJUpBbWot1
 
 To run this project, install it locally by cloning the GitHub repository and typing:
 
+
+* *bundle install*
+* *rake db:migrate && rake db:seed*
+* *ruby runner.rb*
+
+**_Code Examples_**
+
+`def sign_in
+=======
 *bundle install*
 *rake db:migrate && rake db:seed*
 *ruby runner.rb*
@@ -54,6 +67,7 @@ To run this project, install it locally by cloning the GitHub repository and typ
 
 
 `def sign_in 
+
         user_input = prompt.ask "What is your username?"
         found_user = User.find_by(username: user_input)
         if found_user
@@ -80,7 +94,16 @@ To run this project, install it locally by cloning the GitHub repository and typ
 * Game randomizer.
 * View and edit catalogue.
 
-#did i miss anything?
+
+! [Catalogue](https://i.imgur.com/L4nGO35.png)
+! [Random Game Match](https://i.imgur.com/lUNGmhX.png)
+
+**_To-do list:_**
+
+* Refactor 
+* Make code more abstract
+
+
 
 [Imgur](https://i.imgur.com/L4nGO35.png)
 [Imgur](https://i.imgur.com/lUNGmhX.png)
@@ -91,6 +114,7 @@ To run this project, install it locally by cloning the GitHub repository and typ
 * Make code more abstract.
 
 # features we would like to add or refactor
+
 
 
 
