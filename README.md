@@ -1,71 +1,108 @@
-# Mod 1 ActiveRecord Starter Repo
+# BORED GAMES
+=============
 
-In `config/database.yml`, you can change the name of the database from `db/cats.sqlite3` to whatever reflects your project. For example: `db/notes.sqlite3`. Doesn't really matter what you call the db. 
+## OUR SOLUTION FOR YOUR BOREDOM!!
+----------------------------------
+
+![BoredGames](BG1.png)
+
+**_**BORED GAMES** WILL HELP YOU:_**
+
+1. FIND THE PERFECT GAME TO BUST THE BOREDOM WITH OUR QUIZ.  
+2. KEEP A CATALOGUE OF ALL YOUR FAVORITES.  
+3. MATCH YOU TO A RANDOM GAME...and more!  
+
+ ### Table of contents
+* General Info  
+* Intro Video  
+* Technologies
+* Setup
+* Code Examples
+* Features
+* To-Dos
+* What Inspired Us
+* Created By
+* Shout Outs!
+
+Bored Games is a CLI application that allows users to create a profile,  
+discover games that match their preferences, and gives users the ability  
+to save their favorite games. Take the Find Your Best Board Bud quiz  
+and start your favorites list today!!!
+
+**_Intro Video_**
+
+To see [Bored Games in action](https://asciinema.org/a/trilahU71tqDnIIzJUpBbWot1)
+
+**_Technologies_**
+
+* Ruby - version 2.6.1
+* ActiveRecord - version 5.2
+* Sinatra - version 2.0
+* Sinatra-activerecord - version 2.0
+* SQLite3 - version 1.4
+* TTY Prompt
+
+**Setup**
+
+To run this project, install it locally by cloning the GitHub repository and typing:
+
+*ruby runner.rb*
+
+**_Code Examples_**
 
 
+[`def sign_in 
+        user_input = prompt.ask "What is your username?"
+        found_user = User.find_by(username: user_input)
+        if found_user
+            @user = found_user 
+            main_menu
+        else
+            puts "So Sorry Bud, that username doesn't exist. Let's sign you up!"
+            sign_up
+        end
+    end`]
 
-## ActiveRecord Methods
-These common ActiveRecord methods will help you interact with your database. Please refer to the ActiveRecord
-docs for what they do and how to use them. (If the docs talk about Rails, that is ok! ActiveRecord works very
- similar with or without Rails.)
-```
-  .create (.new, .save)
-  .all
-  .count
-  .find
-  .find_by
-  .where
-```
+[`def find_all_favorites
+        all_faves = Usergame.all.filter do |user_fav|
+            user_fav.user == @user
+        end
+        named_faves = all_faves.map do |favorite|
+            favorite.boardgame.name
+        end
+    end`]
 
-#### Notes
+**_Features_**
 
-*Remember*, any model that will have a corresponding table in the database needs to inherit from `ActiveRecord::Base`
-ex:
-```
-class Cat < ActiveRecord::Base
-  # customer methods defined here
-end
-```
+* Game compatability quiz.
+* Game randomizer.
+* View and edit catalogue.
 
-- To view database, you can run `sqlite3 db/cats.db`, then can run `.schema` or `.tables` and can run any SQL commands. (Don't need to do this anymore though! ActiveRecord gives us a schema file!)
+#did i miss anything?
 
+![BoredGames](BG2.png)
+![BoredGames](BG3.png)
 
-### Steps to setup Ruby app with activerecord
-(New for ActiveRecord 6.0)
+**_To-do list:_**
+
+#features we would like to add or refactor
 
 
-## The following steps are already done for you in this boiler plate repo. 
-## The steps below are provided to you as a reference only. 
-## You're not expected to memorize this (please don't).
+**_WHAT INSPIRED US_**
 
+Boredom can be a real kick in kiester.
+We love board games and the way they can be a real boredom buster.  
+In search of a way to match a game to our needs as well as keep  
+track of games we love or want to learn more about, we came up with  
+the concept of **Bored Games**
 
-1. In root of project, run `bundle init`
-1. Add gems: 
-  `bundle add activerecord pry sinatra, sinatra-activerecord rake sqlite3 require_all`
-  run `bundle install`
-1. mkdir config and lib 
-1. mkdir lib/models
-1. touch config/environment.rb config/database.yml
-1. Create your model files and models (make sure to have your models inherit from ActiveRecord::Base)
-1. In config/environment.rb:
-```
-  require 'bundler/setup'
-  Bundler.require
+**_CREATED BY_**
 
-  require_all 'lib'
-```
-1. In config/database.yml:
-  ```
-  development:
-    adapter: sqlite3
-    database: db/cats.sqlite3
-  ```
-1. Touch Rakefile - require ‘config/environment.rb’ and require_relative ‘sinatra/activerecord/rake’ 
-1. Run rake -T to make sure we have access to raketasks
-1. Run `rake db:create_migration NAME=create_cats_table` (will create the db folder if it doesn’t already exist) and will add the migration file to db/migration
-1. Write migration file, then run `rake db:migrate`
-1. Then can see schema in file structure, can also drop into sqlite3 cats.db to see the tables and schema, but don’t really need to do that anymore. *Review rollback here*
-1. Create seeds in db/seeds.rb and run `rake db:seed`
-1. Now can put a pry in environment.rb to run <ModelName>.all and see your seeds.
+**ADAM KNOWLAND** - Strong with the logic force, he is.
+**MELL BASHAM** - The littlest ewok with a heart of gold.
 
-Make sure your models inherit from `ActiveRecord::Base`
+**_SHOUT OUTS!_**
+
+**SYDNEY G., SAM, AND ARIELLE** - FOR HELP WITH AUDIO
+**THE COACHES** - FOR SHOWING US HOW TO **RESPONSIBLY** USE THE FORCE
+
