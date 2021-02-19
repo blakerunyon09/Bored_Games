@@ -14,7 +14,7 @@ class Cli
 
     #MAIN STARTUP SCREEN --> OFFERS LOGIN AND IF NO USERNAME WILL GIVE YOU SIGN UP OPTION 
     def start 
-
+        
         system('clear')
         pid = fork{exec 'afplay', "lib/Tron_sounds2.mp3"}
         Artwork.title
@@ -26,11 +26,13 @@ class Cli
         end
     end
 
+    def Tron_sound 
+        pid = fork{exec 'afplay', "lib/Tron_sounds2.mp3"}
+    end
 
 
 
-
-    #SIGN IN METHOD --> WILL SET YOUR USERNAME TO THE CURRENT SELF.USER, IF USE NON EXISTANT USER WILL SIGN YOU UP
+    #SIGN IN METHOD --> WILL SET YOUR USERNAME TO THE CURRENT SELF.USER, IF USER NON-EXISTENT USER WILL SIGN YOU UP
     def sign_in 
         user_input = prompt.ask "What is your username?"
         found_user = User.find_by(username: user_input)
@@ -194,7 +196,7 @@ class Cli
         if board_games
             puts "#{pastel.cyan.bold(board_games.name)} is a #{pastel.bright_green.bold(board_games.difficulty)} difficulty game to learn and play. It plays best with #{pastel.bright_green.bold(board_games.ideal_number_of_players)} buds and will take you about #{pastel.bright_green.bold(board_games.duration)} minutes to play!"
         else
-            puts "Sorry there bud, we have not matches at this time :("
+            puts "Sorry there bud, we have no matches at this time :("
         end
     end
 
