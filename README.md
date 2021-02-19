@@ -5,7 +5,7 @@
 ----------------------------------
 
 
-! [Main Menu](https://i.imgur.com/mUP8OEt.png)
+[Main Menu](https://i.imgur.com/mUP8OEt.png)
 
 [Imgur](https://i.imgur.com/mUP8OEt.png)
 
@@ -55,18 +55,11 @@ To run this project, install it locally by cloning the GitHub repository and typ
 * *rake db:migrate && rake db:seed*
 * *ruby runner.rb*
 
-**_Code Examples_**
-
-`def sign_in
-=======
-*bundle install*
-*rake db:migrate && rake db:seed*
-*ruby runner.rb*
 
 **_Code Examples_**
 
-
-`def sign_in 
+```
+def sign_in 
 
         user_input = prompt.ask "What is your username?"
         found_user = User.find_by(username: user_input)
@@ -77,16 +70,18 @@ To run this project, install it locally by cloning the GitHub repository and typ
             puts "So Sorry Bud, that username doesn't exist. Let's sign you up!"
             sign_up
         end
-    end`
-
-`def find_all_favorites
+    end
+```
+```
+def find_all_favorites
         all_faves = Usergame.all.filter do |user_fav|
             user_fav.user == @user
         end
         named_faves = all_faves.map do |favorite|
             favorite.boardgame.name
         end
-    end`
+   end
+```
 
 **_Features_**
 
@@ -95,8 +90,8 @@ To run this project, install it locally by cloning the GitHub repository and typ
 * View and edit catalogue.
 
 
-! [Catalogue](https://i.imgur.com/L4nGO35.png)
-! [Random Game Match](https://i.imgur.com/lUNGmhX.png)
+[Catalogue](https://i.imgur.com/L4nGO35.png)
+[Random Game Match](https://i.imgur.com/lUNGmhX.png)
 
 **_To-do list:_**
 
