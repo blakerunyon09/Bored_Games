@@ -108,10 +108,6 @@ def find_all_favorites
 * Refactor Refactor Refactor.
 * Make code more abstract.
 
-# features we would like to add or refactor
-
-
-
 
 **_WHAT INSPIRED US_**
 
