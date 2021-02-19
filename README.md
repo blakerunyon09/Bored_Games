@@ -4,7 +4,7 @@
 ## OUR SOLUTION FOR YOUR BOREDOM!!
 ----------------------------------
 
-![BoredGames](BG1.png)
+! [Main Menu](https://i.imgur.com/mUP8OEt.png)
 
 **_**BORED GAMES** WILL HELP YOU:_**
 
@@ -46,12 +46,13 @@ To see [Bored Games in action](https://asciinema.org/a/trilahU71tqDnIIzJUpBbWot1
 
 To run this project, install it locally by cloning the GitHub repository and typing:
 
-*ruby runner.rb*
+* *bundle install*
+* *rake db:migrate && rake db:seed*
+* *ruby runner.rb*
 
 **_Code Examples_**
 
-
-[`def sign_in 
+`def sign_in
         user_input = prompt.ask "What is your username?"
         found_user = User.find_by(username: user_input)
         if found_user
@@ -61,16 +62,16 @@ To run this project, install it locally by cloning the GitHub repository and typ
             puts "So Sorry Bud, that username doesn't exist. Let's sign you up!"
             sign_up
         end
-    end`]
+    end`
 
-[`def find_all_favorites
+`def find_all_favorites
         all_faves = Usergame.all.filter do |user_fav|
             user_fav.user == @user
         end
         named_faves = all_faves.map do |favorite|
             favorite.boardgame.name
         end
-    end`]
+    end`
 
 **_Features_**
 
@@ -78,14 +79,13 @@ To run this project, install it locally by cloning the GitHub repository and typ
 * Game randomizer.
 * View and edit catalogue.
 
-#did i miss anything?
-
-![BoredGames](BG2.png)
-![BoredGames](BG3.png)
+! [Catalogue](https://i.imgur.com/L4nGO35.png)
+! [Random Game Match](https://i.imgur.com/lUNGmhX.png)
 
 **_To-do list:_**
 
-#features we would like to add or refactor
+* Refactor 
+* Make code more abstract
 
 
 **_WHAT INSPIRED US_**
@@ -98,11 +98,11 @@ the concept of **Bored Games**
 
 **_CREATED BY_**
 
-**ADAM KNOWLAND** - Strong with the logic force, he is.
+**ADAM KNOWLAND** - Strong with the logic force, he is.  
 **MELL BASHAM** - The littlest ewok with a heart of gold.
 
 **_SHOUT OUTS!_**
 
-**SYDNEY G., SAM, AND ARIELLE** - FOR HELP WITH AUDIO
+**SYDNEY G., SAM, AND ARIELLE** - FOR HELP WITH AUDIO  
 **THE COACHES** - FOR SHOWING US HOW TO **RESPONSIBLY** USE THE FORCE
 
