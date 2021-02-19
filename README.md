@@ -4,7 +4,11 @@
 ## OUR SOLUTION FOR YOUR BOREDOM!!
 ----------------------------------
 
+
 ! [Main Menu](https://i.imgur.com/mUP8OEt.png)
+
+[Imgur](https://i.imgur.com/mUP8OEt.png)
+
 
 **_**BORED GAMES** WILL HELP YOU:_**
 
@@ -46,6 +50,7 @@ To see [Bored Games in action](https://asciinema.org/a/trilahU71tqDnIIzJUpBbWot1
 
 To run this project, install it locally by cloning the GitHub repository and typing:
 
+
 * *bundle install*
 * *rake db:migrate && rake db:seed*
 * *ruby runner.rb*
@@ -53,6 +58,16 @@ To run this project, install it locally by cloning the GitHub repository and typ
 **_Code Examples_**
 
 `def sign_in
+=======
+*bundle install*
+*rake db:migrate && rake db:seed*
+*ruby runner.rb*
+
+**_Code Examples_**
+
+
+`def sign_in 
+
         user_input = prompt.ask "What is your username?"
         found_user = User.find_by(username: user_input)
         if found_user
@@ -79,6 +94,7 @@ To run this project, install it locally by cloning the GitHub repository and typ
 * Game randomizer.
 * View and edit catalogue.
 
+
 ! [Catalogue](https://i.imgur.com/L4nGO35.png)
 ! [Random Game Match](https://i.imgur.com/lUNGmhX.png)
 
@@ -88,10 +104,24 @@ To run this project, install it locally by cloning the GitHub repository and typ
 * Make code more abstract
 
 
+
+[Imgur](https://i.imgur.com/L4nGO35.png)
+[Imgur](https://i.imgur.com/lUNGmhX.png)
+
+**_To-do list:_**
+
+* Refactor Refactor Refactor.
+* Make code more abstract.
+
+# features we would like to add or refactor
+
+
+
+
 **_WHAT INSPIRED US_**
 
-Boredom can be a real kick in kiester.
-We love board games and the way they can be a real boredom buster.  
+Boredom can be a real **kick in kiester**.
+We love board games and the way they can be a real **boredom buster**.  
 In search of a way to match a game to our needs as well as keep  
 track of games we love or want to learn more about, we came up with  
 the concept of **Bored Games**
