@@ -85,7 +85,7 @@ To run this project, install it locally by cloning the GitHub repository and typ
 
 **_To-do list:_**
 
-#features we would like to add or refactor
+# features we would like to add or refactor
 
 
 **_WHAT INSPIRED US_**
