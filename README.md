@@ -90,6 +90,9 @@ To run this project, install it locally by cloning the GitHub repository and typ
 * Refactor Refactor Refactor.
 * Make code more abstract.
 
+# features we would like to add or refactor
+
+
 
 **_WHAT INSPIRED US_**
 

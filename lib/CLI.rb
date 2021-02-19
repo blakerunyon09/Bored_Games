@@ -132,6 +132,7 @@ class Cli
             system('clear')
             Artwork.goodbye
             puts "Thanks for stopping by buddy!"
+            pid = fork{ exec 'killall', "afplay"}
             exit!
             
         end
@@ -158,6 +159,7 @@ class Cli
             system('clear')
             Artwork.goodbye
             puts "Thanks for stopping by buddy!"
+            pid = fork{ exec 'killall', "afplay"}
             exit!
         end
     end
