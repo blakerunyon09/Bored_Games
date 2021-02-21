@@ -30,8 +30,6 @@ class Cli
         pid = fork{exec 'afplay', "lib/Tron_sounds2.mp3"}
     end
 
-
-
     #SIGN IN METHOD --> WILL SET YOUR USERNAME TO THE CURRENT SELF.USER, IF USER NON-EXISTENT USER WILL SIGN YOU UP
     def sign_in 
         user_input = prompt.ask "What is your username?"
